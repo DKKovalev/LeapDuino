@@ -1,5 +1,6 @@
 package com.dkkovalev;
 
+import com.leapmotion.leap.Controller;
 import gnu.io.*;
 
 import java.io.BufferedReader;
@@ -84,6 +85,16 @@ public class COMHandler implements SerialPortEventListener {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void sendData(int data) {
+
+        try {
+            output = serialPort.getOutputStream();
+            output.write(data);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
