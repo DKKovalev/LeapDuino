@@ -1,0 +1,43 @@
+int leftLed = 11;
+int middleLed = 12;
+int rightLed = 13;
+
+int receivedInt = -1;
+
+void setup() {
+
+  Serial.begin(9600);
+
+  pinMode(leftLed, OUTPUT);
+  pinMode(middleLed, OUTPUT);
+  pinMode(rightLed, OUTPUT);
+}
+
+void loop() {
+
+      if(Serial.available()>0){
+      receivedInt = Serial.read();
+
+      if(receivedInt >100){
+        digitalWrite(leftLed, HIGH);
+        digitalWrite(middleLed, LOW);
+        digitalWrite(rightLed, LOW);
+      } if(receivedInt >0 && receivedInt <50){
+        digitalWrite(leftLed, LOW);
+        digitalWrite(middleLed, HIGH);
+        digitalWrite(rightLed, LOW);
+      } if(receivedInt > 50&&receivedInt<100){
+        digitalWrite(leftLed, LOW);
+        digitalWrite(middleLed, LOW);
+        digitalWrite(rightLed, HIGH);
+      } else if(receivedInt == 0){
+
+        digitalWrite(leftLed, LOW);
+        digitalWrite(middleLed, LOW);
+        digitalWrite(rightLed, LOW);
+
+      }
+
+      Serial.println(receivedInt);
+      }
+  }
